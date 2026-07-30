@@ -132,6 +132,10 @@ export default function App() {
       launchApp: "🚀 Запустить PWA ➔",
       downloadApk: "📱 Скачать APK для Android",
       stayTuned: "Анонс Скоро в Telegram 💬",
+
+      card01Title: "01. ПРИНЦИП ПРАКТИКИ",
+      card02Title: "02. ФИЛОСОФИЯ УСПЕХА",
+      card03Title: "03. ГАРАНТИЯ ПРИВАТНОСТИ",
     },
 
     en: {
@@ -221,6 +225,10 @@ export default function App() {
       launchApp: "🚀 Launch PWA App ➔",
       downloadApk: "📱 Download Android APK",
       stayTuned: "Announcement Soon in Telegram 💬",
+
+      card01Title: "01. PRACTICE PRINCIPLE",
+      card02Title: "02. SUCCESS PHILOSOPHY",
+      card03Title: "03. PRIVACY GUARANTEE",
     }
   };
 
@@ -291,7 +299,7 @@ export default function App() {
               </div>
 
               <a
-                href="https://t.me/+BU0Ks4Meh49mYTk6"
+                href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-slate-950 border border-sky-500/30 text-xs font-bold transition-all shadow-sm active:scale-95"
@@ -340,14 +348,14 @@ export default function App() {
 
         {/* CATEGORY FILTER TABS */}
         <section className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+          <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-2 px-1 no-scrollbar">
             {Object.keys(t.categories).map((catKey) => {
               const isActive = activeTab === catKey;
               return (
                 <button
                   key={catKey}
                   onClick={() => setActiveTab(catKey)}
-                  className={`px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                  className={`px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 whitespace-nowrap shrink-0 ${
                     isActive
                       ? 'bg-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/20 scale-[1.02]'
                       : 'bg-slate-900 text-slate-300 hover:text-slate-100 hover:bg-slate-850 border border-slate-800'
@@ -426,7 +434,7 @@ export default function App() {
                     )}
                     {!isLive && (
                       <a
-                        href="https://t.me/+BU0Ks4Meh49mYTk6"
+                        href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-sky-300 font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all border border-slate-800 hover:border-sky-500/40 text-xs"
@@ -445,16 +453,16 @@ export default function App() {
         {/* ULTRA-LUXURY REDESIGNED DEVELOPER SECTION: About AlexChai */}
         <section className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-slate-900/90 border border-slate-800/90 rounded-3xl p-8 md:p-12 shadow-2xl card-gradient relative overflow-hidden space-y-8">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
+            <div className="flex flex-col items-center text-center md:flex-row md:items-center md:text-left justify-between gap-6 pb-8 border-b border-slate-800/80">
               
               {/* 3D Glowing Creator Emblem & Golden Typography Header */}
-              <div className="flex items-center gap-4 md:gap-5">
+              <div className="flex flex-col items-center md:flex-row gap-4 md:gap-5">
                 <div className="relative group shrink-0">
                   <div className="absolute -inset-1 bg-gradient-to-tr from-amber-400 via-amber-200 to-amber-500 rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500"></div>
                   
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-3xl bg-slate-950 border-2 border-amber-400/80 flex items-center justify-center shadow-2xl overflow-hidden">
+                  <div className="relative w-20 h-20 md:w-20 md:h-20 rounded-3xl bg-slate-950 border-2 border-amber-400/80 flex items-center justify-center shadow-2xl overflow-hidden">
                     <img 
-                      src="/avatars/avatar1.jpg" 
+                      src="/avatars/alexchai_photo.jpg" 
                       alt="AlexChai Creator Avatar" 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -482,7 +490,7 @@ export default function App() {
 
               {/* Telegram Channel CTA */}
               <a
-                href="https://t.me/+BU0Ks4Meh49mYTk6"
+                href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-sky-400 hover:from-sky-400 hover:to-sky-300 text-slate-950 font-extrabold text-sm flex items-center gap-2.5 shadow-xl transition-all active:scale-95 border border-sky-300/40 shrink-0"
@@ -495,15 +503,15 @@ export default function App() {
             {/* Author Bio Content */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-300 leading-relaxed font-normal">
               <div className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800 space-y-2">
-                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">01. ПРИНЦИП ПРАКТИКИ</div>
+                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">{t.card01Title}</div>
                 <p>{t.aboutBio1}</p>
               </div>
               <div className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800 space-y-2">
-                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">02. ФИЛОСОФИЯ УСПЕХА</div>
+                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">{t.card02Title}</div>
                 <p>{t.aboutBio2}</p>
               </div>
               <div className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800 space-y-2">
-                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">03. ГАРАНТИЯ ПРИВАТНОСТИ</div>
+                <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">{t.card03Title}</div>
                 <p>{t.aboutBio3}</p>
               </div>
             </div>
