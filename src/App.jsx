@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { 
   Sparkles, 
   ExternalLink, 
@@ -277,12 +278,12 @@ export default function App() {
             </div>
 
             {/* Language Switcher & Telegram CTA */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-xl">
-                <Globe className="w-4 h-4 text-amber-400 ml-1.5 mr-1" />
+                <Globe className="w-4 h-4 text-amber-400 ml-1 mr-0.5 hidden sm:inline" />
                 <button
                   onClick={() => setLang('ru')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
+                  className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
                     lang === 'ru' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -290,7 +291,7 @@ export default function App() {
                 </button>
                 <button
                   onClick={() => setLang('en')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
+                  className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
                     lang === 'en' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -298,15 +299,17 @@ export default function App() {
                 </button>
               </div>
 
+              {/* Round Telegram Favicon Button */}
               <a
                 href="https://t.me/alexchai_dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-slate-950 border border-sky-500/30 text-xs font-bold transition-all shadow-sm active:scale-95"
-                title={lang === 'en' ? 'Contact Author & Feedback' : 'Связь с автором'}
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#2AABEE] hover:bg-[#229ED9] hover:scale-105 text-white flex items-center justify-center shadow-md shadow-sky-500/25 transition-all shrink-0 active:scale-95 border border-sky-300/30 cursor-pointer"
+                title={lang === 'en' ? 'Contact Author (Telegram @alexchai_dev)' : 'Связь с автором (Telegram @alexchai_dev)'}
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'Contact Author' : 'Связь с автором'}</span>
+                <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white -translate-x-[0.5px] translate-y-[0.5px]" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .54-1.42.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.88 8.01-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.24 0 .38z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -384,10 +387,10 @@ export default function App() {
                   {/* Top Status & Icon */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between gap-2">
-                      <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-6 h-6" />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-300 shrink-0">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
+                      <span className={`text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-full border shrink-0 ${
                         isLive 
                           ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
                           : 'bg-slate-800 text-slate-400 border-slate-700'
@@ -529,6 +532,7 @@ export default function App() {
           </div>
         </footer>
 
+        <Analytics />
       </div>
     </div>
   );
