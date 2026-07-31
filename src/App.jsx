@@ -299,13 +299,14 @@ export default function App() {
               </div>
 
               <a
-                href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
+                href="https://t.me/alexchai_dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-slate-950 border border-sky-500/30 text-xs font-bold transition-all shadow-sm active:scale-95"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-slate-950 border border-sky-500/30 text-xs font-bold transition-all shadow-sm active:scale-95"
+                title={lang === 'en' ? 'Contact Author & Feedback' : 'Связь с автором'}
               >
                 <Send className="w-3.5 h-3.5" />
-                <span>Telegram</span>
+                <span>{lang === 'en' ? 'Contact Author' : 'Связь с автором'}</span>
               </a>
             </div>
           </div>
@@ -490,13 +491,13 @@ export default function App() {
 
               {/* Telegram Channel CTA */}
               <a
-                href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
+                href="https://t.me/alexchai_dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-sky-400 hover:from-sky-400 hover:to-sky-300 text-slate-950 font-extrabold text-sm flex items-center gap-2.5 shadow-xl transition-all active:scale-95 border border-sky-300/40 shrink-0"
               >
                 <Send className="w-4.5 h-4.5" />
-                <span>{t.tgButton}</span>
+                <span>{lang === 'en' ? '💬 Contact Author & Feedback' : '💬 Связь с автором и отзывы'}</span>
               </a>
             </div>
 
