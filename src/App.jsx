@@ -14,8 +14,10 @@ import {
   Globe,
   Code2,
   Terminal,
-  Download
+  Download,
+  Coffee
 } from 'lucide-react';
+import DonateModal from './components/DonateModal';
 
 const getInitialHubLang = () => {
   try {
@@ -39,6 +41,7 @@ const getInitialHubLang = () => {
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [lang, setLangState] = useState(getInitialHubLang);
+  const [isDonateOpen, setIsDonateOpen] = useState(false);
 
   const setLang = (newLang) => {
     setLangState(newLang);
@@ -277,13 +280,24 @@ export default function App() {
               </div>
             </div>
 
-            {/* Language Switcher & Telegram CTA */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-xl">
-                <Globe className="w-4 h-4 text-amber-400 ml-1 mr-0.5 hidden sm:inline" />
+            {/* Donate / Support Button & Language Switcher & Telegram CTA */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* Support Button */}
+              <button
+                onClick={() => setIsDonateOpen(true)}
+                className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-slate-950 border border-amber-500/40 transition-all shadow-sm shrink-0 cursor-pointer active:scale-95 text-center"
+                title={lang === 'en' ? 'Support Project' : 'Поддержать проект'}
+              >
+                <Coffee className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className="font-bold">{lang === 'en' ? 'Support' : 'Поддержать'}</span>
+              </button>
+
+              {/* Language Switcher */}
+              <div className="flex items-center gap-0.5 bg-slate-900 border border-slate-800 p-0.5 sm:p-1 rounded-xl shadow-inner shrink-0">
+                <Globe className="w-3.5 h-3.5 text-amber-400 ml-1 mr-0.5 hidden sm:inline" />
                 <button
                   onClick={() => setLang('ru')}
-                  className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
+                  className={`px-1.5 sm:px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all cursor-pointer ${
                     lang === 'ru' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -291,7 +305,7 @@ export default function App() {
                 </button>
                 <button
                   onClick={() => setLang('en')}
-                  className={`px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all ${
+                  className={`px-1.5 sm:px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all cursor-pointer ${
                     lang === 'en' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -531,6 +545,15 @@ export default function App() {
             </p>
           </div>
         </footer>
+
+        {/* Donate & Support Modal */}
+        {isDonateOpen && (
+          <DonateModal
+            isOpen={isDonateOpen}
+            onClose={() => setIsDonateOpen(false)}
+            lang={lang}
+          />
+        )}
 
         <Analytics />
       </div>
