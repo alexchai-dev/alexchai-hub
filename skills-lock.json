@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "ask-nodumb": {
+      "source": "hronicasync/nodumbmode",
+      "sourceType": "github",
+      "skillPath": "ask-nodumb/SKILL.md",
+      "computedHash": "60dfec43bd2acbf9dbc93da39120147de9a0456d874007e5ae506780d1d5c81a"
+    },
+    "changelog-discipline": {
+      "source": "hronicasync/nodumbmode",
+      "sourceType": "github",
+      "skillPath": "changelog-discipline/SKILL.md",
+      "computedHash": "703ac21f3570fc296ec8a6039e4f2d1af2df6231993b43f188e3436e5a5a60ec"
+    },
+    "nodumb": {
+      "source": "hronicasync/nodumbmode",
+      "sourceType": "github",
+      "skillPath": "nodumb/SKILL.md",
+      "computedHash": "f2b9f442334cd208035252fe853ff8d9467ff70c802f6672f6ee51b16370d940"
+    },
+    "system-feedback": {
+      "source": "hronicasync/nodumbmode",
+      "sourceType": "github",
+      "skillPath": "system-feedback/SKILL.md",
+      "computedHash": "c79d43f50f6d1dd9ccee22166ab48ea31d4980eb7311208ab19c984337f0e0d3"
+    }
+  }
+}

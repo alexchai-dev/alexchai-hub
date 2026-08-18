@@ -6,16 +6,17 @@ import {
   Send, 
   CheckCircle2, 
   Sprout, 
-  Brain, 
-  DollarSign, 
+  Database, 
   ShieldCheck, 
   Zap, 
   Smartphone,
   Globe,
   Code2,
-  Terminal,
-  Download,
-  Coffee
+  HelpCircle,
+  Lightbulb,
+  Trophy,
+  Coffee,
+  Activity
 } from 'lucide-react';
 import DonateModal from './components/DonateModal';
 
@@ -23,222 +24,414 @@ const getInitialHubLang = () => {
   try {
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
-    if (urlLang === 'en' || urlLang === 'ru') return urlLang;
+    if (urlLang === 'en' || urlLang === 'ua' || urlLang === 'ru') return urlLang;
 
-    const saved = localStorage.getItem('alexchai_hub_lang_v1');
+    const saved = localStorage.getItem('alexchai_hub_lang_v4');
     if (saved) return saved;
 
     const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    if (userLang.startsWith('ru') || userLang.startsWith('uk') || userLang.startsWith('be') || userLang.startsWith('kk')) {
-      return 'ru';
-    }
-    return 'en';
+    if (userLang.startsWith('uk') || userLang.startsWith('ua')) return 'ua';
+    if (userLang.startsWith('ru') || userLang.startsWith('be')) return 'ru';
+    return 'ua';
   } catch (e) {
-    return 'ru';
+    return 'ua';
   }
 };
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [lang, setLangState] = useState(getInitialHubLang);
+  const [isLangModalOpen, setIsLangModalOpen] = useState(false);
   const [isDonateOpen, setIsDonateOpen] = useState(false);
 
   const setLang = (newLang) => {
     setLangState(newLang);
-    try { localStorage.setItem('alexchai_hub_lang_v1', newLang); } catch (e) {}
+    try { localStorage.setItem('alexchai_hub_lang_v4', newLang); } catch (e) {}
   };
 
   const content = {
-    ru: {
-      navSubtitle: "Интерактивные веб-приложения на стыке психологии, мышления и финансовой продуктивности",
-      heroBadge: "Официальный Каталог Приложений • AlexChai",
-      heroTitlePart1: "Интерактивные Системы ",
-      heroTitlePart2: "Продуктивности & Мышления",
-      heroDesc: "Каждое приложение — это готовый цифровой инструмент, превращающий фундаментальные законы психологии, мышления и финансового капитала в ежедневную практику.",
+    ua: {
+      navSubtitle: "Інтерактивні веб-системи, PWA-додатки та Telegram Mini Apps",
+      heroBadge: "AI Product Builder • Rapid MVP Development",
+      heroH1: "Створюю інтерактивні системи, швидкі PWA та Telegram-боти.",
+      heroSub: "Перетворюю ідеї на працюючі MVP за 24 години. AI Product Builder.",
+      ctaOrder: "Замовити MVP ➔",
       
+      labelProblem: "Проблема:",
+      labelSolution: "Рішення:",
+      labelResult: "Результат:",
+
       categories: {
-        all: "Все Проекты",
-        productivity: "🌱 Продуктивность & Дисциплина",
-        psychology: "🧠 Психология & Мышление",
-        finance: "💰 Финансы & Капитал"
+        all: "Всі Проєкти",
+        ai: "🧠 ШІ-Екосистеми & TWA",
+        web3: "⚡ Web3 & MCP-Протоколи",
+        productivity: "🌱 Продуктивність & PWA"
       },
 
-      apps: [
+      casesSectionTitle: "Портфоліо Рішень (Кейси)",
+      casesSectionSub: "Кожен проект — це працюючий MVP з чітко розв'язаною бізнес-проблемою",
+
+      cases: [
+        {
+          id: 'neirostudio-ai',
+          title: 'NeiroStudio AI 2.0',
+          subtitle: 'Мультимодальна 10-в-1 Екосистема ШІ-інструментів (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          category: 'ai',
+          statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
+          link: 'https://neirostudio-hub-v2.vercel.app',
+          icon: Sparkles,
+          color: 'amber',
+          problem: 'Завищені ціни, повільні сервери та складний поріг входження для створення 3D YouTube-обкладинок, вірусних SMM-текстів та бізнес-ілюстрацій.',
+          solution: 'Мультимодальний Telegram Mini App з 10 AI-інструментами (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
+          result: 'Подвійний 3D-двигун на базі надшвидкого Fal.ai FLUX Schnell ($0.003/ген, 1.2 сек) з вбудованою монетизацією Telegram Stars (⭐️) та HMAC-SHA256 анти-чит захистом.',
+          features: [
+            '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
+            '🎬 YouTube Studio (16:9 3D Обкладинки + Векторний текст)',
+            '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA структура)',
+            '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
+            '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
+            '💼 Business Avatar 8K & Real Estate 3D Staging',
+            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
+            '📦 Amazon KDP Sticker Generator & HD Proxy Download',
+            '⭐️ Монетизація Telegram Stars (94% маржі)'
+          ]
+        },
+        {
+          id: 'x402-datahub',
+          title: 'x402 Data Hub',
+          subtitle: 'Автономний MCP-сервер з Web3-мікроплатежами на Cloudflare Workers',
+          category: 'web3',
+          statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
+          link: 'https://x402datahub.io',
+          icon: Database,
+          color: 'cyan',
+          problem: 'Складність монетизації та інтеграції Web3-мікроплатежів для автоматичних ШІ-агентів та аналітичних сервісів.',
+          solution: 'Автономний протокол даних та MCP-сервер (Model Context Protocol) на базі Cloudflare Workers з автоматичною обробкою мікроплатежів x402.',
+          result: 'Миттєві платіжні транзакції, безперебійний доступ до структурованих аналітичних даних та інтеграція з AI-агентами.',
+          features: [
+            '🌐 Інтеграція сервера Model Context Protocol (MCP)',
+            '⚡ Інфраструктура Cloudflare Workers Edge',
+            '💎 Автоматизовані мікроплатежі x402 Web3',
+            '📊 Високопродуктивні аналітичні API-ендпоінти',
+            '🤖 Нативна сумісність з AI-агентами та LLM'
+          ]
+        },
         {
           id: 'rohn-system',
-          title: 'The Rohn System',
-          subtitle: 'Операционная система личной эффективности по философии Джима Рона',
+          title: 'The Jim Rohn System',
+          subtitle: 'PWA-операційна система особистої ефективності за філософією Джима Рона',
           category: 'productivity',
-          status: 'live',
+          statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
+          link: 'https://the-rohn-system.vercel.app',
+          icon: Sprout,
+          color: 'amber',
+          problem: 'Перевантажені нудні трекери звичок з рекламним сміттям та низьким показником щоденного утримання користувачів.',
+          solution: 'Інтерактивна PWA-система особистої ефективності за філософією Джима Рона (Формула 70/30, Поле Сева, Денний 24г планер, Таймер читання).',
+          result: '100% локальна приватність даних на пристрої користувача, миттєве завантаження без інсталяції та висока залученість.',
+          features: [
+            '🌱 Формула розподілу капіталу 70/30',
+            '🌾 Поле Сева та симулятор норми втрат',
+            '🔥 Модуль переплавки помилок у досвід',
+            '📖 30-хвилинний таймер читання & щоденник',
+            '⏱️ Планувальник 24 години (Major/Minor)',
+            '🖐️ Аудит оточення 5 пальців',
+            '🏛️ Піраміда цілей з трансформацією особистості'
+          ]
+        },
+        {
+          id: 'vix-signal-radar',
+          title: 'VIX Signal Radar & CheatSheet',
+          subtitle: 'Інтерактивний сигнальний термінал по индексу волатильності $VIX',
+          category: 'productivity',
+          statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
+          link: 'https://vix-signal-radar.vercel.app',
+          icon: Activity,
+          color: 'amber',
+          problem: 'Інвестори часто пропускают идэальные историчны зоны покупок акций під час ринковой паники та не фиксируют прибыль во время «перегріва» ринку.',
+          solution: 'Інтерактивний динамічний сигнальный терминал на основи шпаргалки инвестора по индексу VIX з автоматичнымы сигналами в Telegram Bot API, Email та Webhooks.',
+          result: 'Митттэве оповищення инвесторив про вихид VIX в Зону Покупок (>30) або Экстремального Страху (>45) з доказовою базой на всих кризисах 2002–2025 рр.',
+          features: [
+            '📊 Динамичный VIX Fear Gauge (5 зон волатильности)',
+            '🚨 Авто-сигналы в Telegram Bot API, Email & Webhooks',
+            '📈 Интерактивный Live-поток VIX с симуляцией',
+            '📜 Доказательная база по кризисам 2002–2025 гг.',
+            '🔊 Звуковые и браузерные Push-уведомления',
+            '📱 100% PWA & Мобильная адаптивность'
+          ]
+        }
+      ],
+
+      aboutTitle: "Про Автора — ",
+      aboutAuthorName: "AlexChai",
+      aboutBadge: "</> Indie Hacker & AI Product Builder",
+      aboutBio1: "Вітаю! Я AlexChai. Спеціалізуюся на швидкій розробці працюючих MVP за 24 години: від інтерактивних PWA-додатків до Telegram Mini Apps та AI-інструментів.",
+      aboutBio2: "Моя місія — створювати швидкі, красиві та надійні цифрові продукти, які розв'язують конкретні бізнес-задачі та приносять цінність користувачам.",
+      aboutBio3: "Головний принцип роботи: 0% зайвої бюрократії • 100% Конфіденційність • Робочий результат за 24 години • Чистий та масштабований код.",
+      
+      launchApp: "🚀 ЗАПУСТИТИ PWA / MVP ➔",
+      footerPrivacy: "100% Конфіденційність &bull; Ваші дані залишаються тільки на вашому пристрої",
+
+      card01Title: "01. ПРИНЦИП ПРАКТИКИ",
+      card02Title: "02. ФІЛОСОФІЯ РОЗРОБКИ",
+      card03Title: "03. ГАРАНТІЯ ЯКОСТІ",
+    },
+
+    ru: {
+      navSubtitle: "Интерактивные веб-системы, PWA-приложения и Telegram Mini Apps",
+      heroBadge: "AI Product Builder • Rapid MVP Development",
+      heroH1: "Создаю интерактивные системы, быстрые PWA и Telegram-боты.",
+      heroSub: "Превращаю идеи в работающие MVP за 24 часа. AI Product Builder.",
+      ctaOrder: "Заказать MVP ➔",
+      
+      labelProblem: "Проблема:",
+      labelSolution: "Решение:",
+      labelResult: "Результат:",
+
+      categories: {
+        all: "Все Проекты",
+        ai: "🧠 ИИ-Экосистемы & TWA",
+        web3: "⚡ Web3 & MCP-Протоколы",
+        productivity: "🌱 Продуктивность & PWA"
+      },
+
+      casesSectionTitle: "Портфолио Решений (Кейсы)",
+      casesSectionSub: "Каждый проект — это рабочий MVP с четко решенной бизнес-проблемой",
+
+      cases: [
+        {
+          id: 'neirostudio-ai',
+          title: 'NeiroStudio AI 2.0',
+          subtitle: 'Мультимодальная 10-в-1 Экосистема ИИ-инструментов (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          category: 'ai',
+          statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
+          link: 'https://neirostudio-hub-v2.vercel.app',
+          icon: Sparkles,
+          color: 'amber',
+          problem: 'Завышенные цены, медленные серверы и сложный порог входа для создания 3D YouTube-обложек, вирусных SMM-текстов и бизнес-иллюстраций.',
+          solution: 'Мультимодальный Telegram Mini App с 10 AI-инструментами (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
+          result: 'Двойной 3D-движок на базе сверхбыстрого Fal.ai FLUX Schnell ($0.003/ген, 1.2 сек) с встроенной монетизацией Telegram Stars (⭐️) и HMAC-SHA256 анти-чит защитой.',
+          features: [
+            '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
+            '🎬 YouTube Studio (16:9 3D Обложки + Векторный текст)',
+            '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA структура)',
+            '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
+            '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
+            '💼 Business Avatar 8K & Real Estate 3D Staging',
+            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
+            '📦 Amazon KDP Sticker Generator & HD Proxy Download',
+            '⭐️ Монетизация Telegram Stars (94% маржи)'
+          ]
+        },
+        {
+          id: 'x402-datahub',
+          title: 'x402 Data Hub',
+          subtitle: 'Автономный MCP-сервер с Web3-микроплатежами на Cloudflare Workers',
+          category: 'web3',
+          statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
+          link: 'https://x402datahub.io',
+          icon: Database,
+          color: 'cyan',
+          problem: 'Сложность монетизации и интеграции Web3-микроплатежей для автоматических ИИ-агентов и аналитических сервисов.',
+          solution: 'Автономный протокол данных и MCP-сервер (Model Context Protocol) на базе Cloudflare Workers с автоматической обработкой микроплатежей x402.',
+          result: 'Мгновенные платежные транзакции, бесперебойный доступ к структурированным аналитическим данным и интеграция с AI-агентами.',
+          features: [
+            '🌐 Интеграция сервера Model Context Protocol (MCP)',
+            '⚡ Инфраструктура Cloudflare Workers Edge',
+            '💎 Автоматизированные микроплатежи x402 Web3',
+            '📊 Высокопроизводительные аналитические API-эндпоинты',
+            '🤖 Нативная совместимость с AI-агентами и LLM'
+          ]
+        },
+        {
+          id: 'rohn-system',
+          title: 'The Jim Rohn System',
+          subtitle: 'PWA-операционная система личной эффективности по философии Джима Рона',
+          category: 'productivity',
           statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
           link: 'https://the-rohn-system.vercel.app',
-          desc: 'Интерактивная система, созданная по мотивам легендарного семинара Джима Рона 1981 года «Вызов к успеху» (The Challenge to Succeed, Анахайм, Калифорния). Превращает фундаментальные дисциплины в неизбежный урожай успеха: Формула капитала 70/30, Поле Сева, Переплавка ошибок в опыт, 30-мин таймер чтения, 24ч планировщик и Пирамида Целей.',
-          features: [
-            'Формула распределения капитала 70/30',
-            'Поле Сева и симулятор нормы потерь',
-            'Модуль переплавки ошибок в опыт',
-            '30-минутный таймер чтения & дневник',
-            'Планировщик 24 часа (Major/Minor)',
-            'Аудит окружения 5 пальцев',
-            'Пирамида целей с трансформацией личности'
-          ],
           icon: Sprout,
-          color: 'amber'
+          color: 'amber',
+          problem: 'Перегруженные трекеры привычек с рекламным мусором и низким показателем удержания пользователей.',
+          solution: 'Интерактивная PWA-система личной эффективности по философии Джима Рона (Формула 70/30, Поле Сева, Дневной 24ч планер, Таймер чтения).',
+          result: '100% локальная приватность данных на устройстве пользователя, мгновенный запуск без установки и высокая вовлеченность.',
+          features: [
+            '🌱 Формула распределения капитала 70/30',
+            '🌾 Поле Сева и симулятор нормы потерь',
+            '🔥 Модуль переплавки ошибок в опыт',
+            '📖 30-минутный таймер чтения & дневник',
+            '⏱️ Планировщик 24 часа (Major/Minor)',
+            '🖐️ Аудит окружения 5 пальцев',
+            '🏛️ Пирамида целей с трансформацией личности'
+          ]
         },
         {
-          id: 'mind-matrix',
-          title: 'Mind Matrix',
-          subtitle: 'Интерактивный трекер нейронных привычек & эмоциональной стойкости',
-          category: 'psychology',
-          status: 'coming_soon',
-          statusText: '⏳ В РАЗРАБОТКЕ (СКОРО)',
-          link: null,
-          desc: 'Визуализация формирования новых нейронных связей в виде интерактивной 3D-сети. Алгоритм интервальных повторений для установок мышления, трекер дофаминовых триггеров и анализ фокуса.',
+          id: 'vix-signal-radar',
+          title: 'VIX Signal Radar & CheatSheet',
+          subtitle: 'Интерактивный сигнальный терминал по индексу волатильности $VIX',
+          category: 'productivity',
+          statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
+          link: 'https://vix-signal-radar.vercel.app',
+          icon: Activity,
+          color: 'amber',
+          problem: 'Инвесторы часто пропускают идеальные исторические зоны покупок акций во время рыночной паники и не фиксируют прибыль во время «перегрева» рынка.',
+          solution: 'Интерактивный динамический сигнальный терминал на основе шпаргалки инвестора по индексу VIX с автоматическими сигналами в Telegram Bot API, Email и Webhooks.',
+          result: 'Мгновенное оповещение инвесторов о выходе VIX в Зону Покупок (>30) или Экстремального Страха (>45) с доказательной базой на всех кризисах 2002–2025 гг.',
           features: [
-            '3D-графы нейронных связей',
-            'Трекер дофаминовых триггеров',
-            'Интервальные повторения аффирмаций',
-            'Монитор эмоционального баланса'
-          ],
-          icon: Brain,
-          color: 'cyan'
-        },
-        {
-          id: 'capital-flow',
-          title: 'Capital Flow 3.0',
-          subtitle: 'Симулятор финансовой независимости & сложного процента',
-          category: 'finance',
-          status: 'coming_soon',
-          statusText: '⏳ В РАЗРАБОТКЕ (СКОРО)',
-          link: null,
-          desc: 'Расчет точной даты вашей финансовой независимости с учетом инфляции, 30% отчислений в капитал и роста по правилу 72 через сложный процент.',
-          features: [
-            'Калькулятор сложного процента',
-            'Защита от инфляции',
-            'Матрица пассивного дохода',
-            'Дорожная карта финансовой свободы'
-          ],
-          icon: DollarSign,
-          color: 'emerald'
+            '📊 Динамический VIX Fear Gauge (5 зон волатильности)',
+            '🚨 Авто-сигналы в Telegram Bot API, Email & Webhooks',
+            '📈 Интерактивный Live-поток VIX с симуляцией',
+            '📜 Доказательная база по кризисам 2002–2025 гг.',
+            '🔊 Звуковые и браузерные Push-уведомления',
+            '📱 100% PWA & Мобильная адаптивность'
+          ]
         }
       ],
 
       aboutTitle: "Об Авторе — ",
       aboutAuthorName: "AlexChai",
-      aboutBadge: "</> Indie Hacker & Developer",
-      aboutBio1: "Привет! Я AlexChai. Создаю практические интерактивные веб-приложения на стыке психологии, философии и финансовой продуктивности.",
-      aboutBio2: "Моя миссия — облегчить процесс освоения и применения ценных знаний (философии, финансов, психологии) с помощью простых, красивых и понятных интерактивных приложений.",
-      aboutBio3: "Все приложения создаются по главному принципу: Никакой рекламы • 100% Конфиденциальность • Мгновенный запуск прямо в браузере.",
-      tgJoinText: "Подписывайтесь на Telegram-канал, чтобы первыми получать доступ к новым интерактивным приложениям!",
-      tgButton: "Канал в Telegram ➔",
-
+      aboutBadge: "</> Indie Hacker & AI Product Builder",
+      aboutBio1: "Привет! Я AlexChai. Специализируюсь на быстрой разработке рабочих MVP за 24 часа: от интерактивных PWA-приложений до Telegram Mini Apps и AI-инструментов.",
+      aboutBio2: "Моя миссия — создавать быстрые, красивые и надежные цифровые продукты, которые решают конкретные бизнес-задачи и приносят ценность пользователям.",
+      aboutBio3: "Главный принцип работы: 0% лишних слов • 100% Конфиденциальность • Рабочий результат за 24 часа • Чистый и масштабируемый код.",
+      
+      launchApp: "🚀 ЗАПУСТИТЬ PWA / MVP ➔",
       footerPrivacy: "100% Конфиденциальность &bull; Ваши данные остаются только на вашем устройстве",
-      launchApp: "🚀 Запустить PWA ➔",
-      downloadApk: "📱 Скачать APK для Android",
-      stayTuned: "Анонс Скоро в Telegram 💬",
 
       card01Title: "01. ПРИНЦИП ПРАКТИКИ",
-      card02Title: "02. ФИЛОСОФИЯ УСПЕХА",
-      card03Title: "03. ГАРАНТИЯ ПРИВАТНОСТИ",
+      card02Title: "02. ФИЛОСОФИЯ РАЗРАБОТКИ",
+      card03Title: "03. ГАРАНТИЯ КАЧЕСТВА",
     },
 
     en: {
-      navSubtitle: "Interactive web applications at the intersection of psychology, mindset & financial productivity",
-      heroBadge: "Official Application Hub • AlexChai",
-      heroTitlePart1: "Interactive Systems ",
-      heroTitlePart2: "Productivity & Mindset",
-      heroDesc: "Every application is a ready-to-use digital framework turning fundamental laws of psychology, mindset, and financial capital into daily practice.",
+      navSubtitle: "Interactive Web Systems, PWA Applications & Telegram Mini Apps",
+      heroBadge: "AI Product Builder • Rapid MVP Development",
+      heroH1: "Building interactive systems, fast PWAs, and Telegram bots.",
+      heroSub: "Turning ideas into working MVPs in 24 hours. AI Product Builder.",
+      ctaOrder: "Order MVP ➔",
+
+      labelProblem: "Problem:",
+      labelSolution: "Solution:",
+      labelResult: "Result:",
       
       categories: {
         all: "All Projects",
-        productivity: "🌱 Productivity & Discipline",
-        psychology: "🧠 Psychology & Mindset",
-        finance: "💰 Finance & Capital"
+        ai: "🧠 AI Ecosystems & TWA",
+        web3: "⚡ Web3 & MCP Protocols",
+        productivity: "🌱 Productivity & PWA"
       },
 
-      apps: [
+      casesSectionTitle: "Portfolio of Solutions (Case Studies)",
+      casesSectionSub: "Every project is a working MVP with a clearly solved business problem",
+
+      cases: [
+        {
+          id: 'neirostudio-ai',
+          title: 'NeiroStudio AI 2.0',
+          subtitle: 'Multimodal 10-in-1 AI Tools Ecosystem (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          category: 'ai',
+          statusText: '🟢 PUBLISHED (LIVE)',
+          link: 'https://neirostudio-hub-v2.vercel.app',
+          icon: Sparkles,
+          color: 'amber',
+          problem: 'Overpriced subscriptions, slow generation servers, and high friction when creating 3D YouTube thumbnails and viral SMM content.',
+          solution: 'Multimodal Telegram Mini App with 10 production AI tools (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
+          result: 'Dual 3D Engine powered by high-speed Fal.ai FLUX Schnell ($0.003/gen, 1.2s response) with native Telegram Stars (⭐️) monetization and HMAC-SHA256 anti-cheat validation.',
+          features: [
+            '🚀 Dual 3D AI Engine (1.2s Fal.ai FLUX Schnell 8K)',
+            '🎬 YouTube Studio (16:9 3D Covers + Vector Text)',
+            '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA Structure)',
+            '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
+            '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
+            '💼 Business Avatar 8K & Real Estate 3D Staging',
+            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
+            '📦 Amazon KDP Sticker Generator & HD Proxy Download',
+            '⭐️ Telegram Stars Monetization (94% Profit Margin)'
+          ]
+        },
+        {
+          id: 'x402-datahub',
+          title: 'x402 Data Hub',
+          subtitle: 'Autonomous MCP Server with Web3 Micro-Payments on Cloudflare Workers',
+          category: 'web3',
+          statusText: '🟢 PUBLISHED (LIVE)',
+          link: 'https://x402datahub.io',
+          icon: Database,
+          color: 'cyan',
+          problem: 'Complexity in integrating Web3 micro-payment monetization and analytical endpoints for AI Agents.',
+          solution: 'Autonomous data protocol & MCP (Model Context Protocol) server built on Cloudflare Workers with automated x402 micro-payment settlement.',
+          result: 'Instant payment transactions, zero-downtime structured analytics access, and native AI Agent compatibility.',
+          features: [
+            '🌐 Model Context Protocol (MCP) Server Integration',
+            '⚡ Cloudflare Workers Edge Infrastructure',
+            '💎 x402 Web3 Automated Micro-Payments',
+            '📊 High-Throughput Data & Analytics Endpoints',
+            '🤖 Native AI Agent & LLM Compatibility'
+          ]
+        },
         {
           id: 'rohn-system',
-          title: 'The Rohn System',
+          title: 'The Jim Rohn System',
           subtitle: 'Personal Effectiveness Operating System • Jim Rohn Philosophy',
           category: 'productivity',
-          status: 'live',
           statusText: '🟢 PUBLISHED (LIVE)',
           link: 'https://the-rohn-system.vercel.app',
-          desc: 'Interactive system inspired by Jim Rohn\'s legendary 1981 seminar "The Challenge to Succeed" (Anaheim, California). Turns daily disciplines into an inevitable harvest of success: 70/30 Capital Allocation, Law of Sowing, Reframing regrets, 30-min reading timer, 24h planner, and Goal Pyramid.',
-          features: [
-            '70/30 Capital Allocation Formula',
-            'Sowing Field & Harvest Simulator',
-            'Reframing Regrets into Wisdom',
-            '30-Min Wisdom Timer & Journal',
-            '24h Planner (Major/Minor Tasks)',
-            '5 Finger Environment Audit',
-            'Goal Pyramid with Identity Shift'
-          ],
           icon: Sprout,
-          color: 'amber'
+          color: 'amber',
+          problem: 'Bloated habit trackers with invasive ads and poor daily user retention.',
+          solution: 'Interactive PWA system built on Jim Rohn\'s philosophy (70/30 Capital Formula, Sowing Simulator, 24h Planner, Wisdom Timer).',
+          result: '100% client-side privacy, offline capability, zero install overhead, and high daily retention.',
+          features: [
+            '🌱 70/30 Capital Allocation Formula',
+            '🌾 Sowing Field & Harvest Simulator',
+            '🔥 Reframing Regrets into Wisdom',
+            '📖 30-Min Wisdom Timer & Journal',
+            '⏱️ 24h Planner (Major/Minor Tasks)',
+            '🖐️ 5 Finger Environment Audit',
+            '🏛️ Goal Pyramid with Identity Shift'
+          ]
         },
         {
-          id: 'mind-matrix',
-          title: 'Mind Matrix',
-          subtitle: 'Interactive Neural Habit Tracker & Emotional Resilience System',
-          category: 'psychology',
-          status: 'coming_soon',
-          statusText: '⏳ IN DEVELOPMENT (COMING SOON)',
-          link: null,
-          desc: 'Visualize the formation of new neural pathways as an interactive 3D network. Spaced repetition algorithm for mindset anchors, dopamine tracking, and focus trigger analysis.',
+          id: 'vix-signal-radar',
+          title: 'VIX Signal Radar & CheatSheet',
+          subtitle: 'Interactive Volatility Index ($VIX) Investor Signal Terminal',
+          category: 'productivity',
+          statusText: '🟢 PUBLISHED (LIVE)',
+          link: 'https://vix-signal-radar.vercel.app',
+          icon: Activity,
+          color: 'amber',
+          problem: 'Investors frequently miss prime historical stock buying opportunities during market panics and fail to reduce risk during extreme market complacency.',
+          solution: 'Interactive dynamic signal terminal based on Wall Street VIX Investor Cheat Sheet with automated Telegram Bot API, Email, and Webhook dispatching.',
+          result: 'Instant notification alerts when VIX breaches Buy Zone (>30) or Extreme Fear (>45) with historical proof across 2002–2025 financial crises.',
           features: [
-            '3D Neural Connection Graph',
-            'Dopamine & Trigger Tracker',
-            'Spaced Repetition Mindset Anchors',
-            'Emotional Balance Monitor'
-          ],
-          icon: Brain,
-          color: 'cyan'
-        },
-        {
-          id: 'capital-flow',
-          title: 'Capital Flow 3.0',
-          subtitle: 'Financial Independence & Compound Interest Simulator',
-          category: 'finance',
-          status: 'coming_soon',
-          statusText: '⏳ IN DEVELOPMENT (COMING SOON)',
-          link: null,
-          desc: 'Calculate the exact date of your financial independence considering inflation, 30% capital allocation, and compound interest growth via the Rule of 72.',
-          features: [
-            'Compound Interest Simulator',
-            'Inflation Shield Calculator',
-            'Passive Income Allocation Matrix',
-            'Financial Freedom Roadmap'
-          ],
-          icon: DollarSign,
-          color: 'emerald'
+            '📊 Dynamic VIX Fear Gauge (5 Volatility Zones)',
+            '🚨 Automated Signals via Telegram Bot API, Email & Webhooks',
+            '📈 Interactive Live VIX Stream with Simulation Slider',
+            '📜 Historical Proof & Financial Crisis Timeline (2002–2025)',
+            '🔊 Audio & Browser Push Notifications',
+            '📱 100% PWA & Mobile Adaptive Layout'
+          ]
         }
       ],
 
       aboutTitle: "About the Developer — ",
       aboutAuthorName: "AlexChai",
-      aboutBadge: "</> Indie Hacker & Developer",
-      aboutBio1: "Hello! I am AlexChai. I build practical interactive web applications at the intersection of psychology, philosophy, and financial productivity.",
-      aboutBio2: "My mission is to simplify learning and applying key concepts (philosophy, finance, psychology) through simple, beautiful, and interactive web applications.",
-      aboutBio3: "Every app is built with a core promise: No ads • 100% Client-side privacy • Instant launch directly in your browser.",
-      tgJoinText: "Join my Telegram channel to get first access to new interactive applications and effectiveness frameworks!",
-      tgButton: "Telegram Channel ➔",
-
+      aboutBadge: "</> Indie Hacker & AI Product Builder",
+      aboutBio1: "Hello! I am AlexChai. Specializing in rapid MVP development within 24 hours: from interactive PWAs to Telegram Mini Apps and AI tools.",
+      aboutBio2: "My mission is to create fast, beautiful, and reliable digital products that solve concrete business problems and deliver real value.",
+      aboutBio3: "Core philosophy: 0% fluff • 100% Privacy • Working result in 24 hours • Clean & scalable code architecture.",
+      
+      launchApp: "🚀 LAUNCH PWA / MVP ➔",
       footerPrivacy: "100% Client-side Privacy &bull; All data stays exclusively on your device",
-      launchApp: "🚀 Launch PWA App ➔",
-      downloadApk: "📱 Download Android APK",
-      stayTuned: "Announcement Soon in Telegram 💬",
 
       card01Title: "01. PRACTICE PRINCIPLE",
-      card02Title: "02. SUCCESS PHILOSOPHY",
-      card03Title: "03. PRIVACY GUARANTEE",
+      card02Title: "02. DEVELOPMENT PHILOSOPHY",
+      card03Title: "03. QUALITY GUARANTEE",
     }
   };
 
-  const t = content[lang] || content.ru;
+  const t = content[lang] || content.ua;
 
-  const filteredApps = t.apps.filter(app => {
+  const filteredApps = t.cases.filter(app => {
     if (activeTab === 'all') return true;
     return app.category === activeTab;
   });
@@ -246,7 +439,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-amber-500/30 selection:text-amber-200">
       
-      {/* 3D Cyber Ambient Spotlights */}
+      {/* 3D Premium Cyber Ambient Spotlights (Warm Gold/Amber + Deep Cyan) */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-amber-500/10 rounded-full blur-[128px]"></div>
         <div className="absolute top-1/3 -right-40 w-96 h-96 bg-sky-500/10 rounded-full blur-[128px]"></div>
@@ -256,7 +449,7 @@ export default function App() {
       <div className="relative z-10">
 
         {/* HEADER / NAVIGATION BAR */}
-        <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+        <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
             
             {/* Logo & Monogram */}
@@ -264,7 +457,7 @@ export default function App() {
               <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-950 border border-amber-400/80 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.25)] relative overflow-hidden group">
                 <img 
                   src="/avatars/avatar1.jpg" 
-                  alt="AlexChai Cyber Logo" 
+                  alt="AlexChai Logo" 
                   className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -280,100 +473,98 @@ export default function App() {
               </div>
             </div>
 
-            {/* Donate / Support Button & Language Switcher & Telegram CTA */}
+            {/* Support, Language Switcher & Telegram Contact CTA */}
             <div className="flex items-center gap-1.5 sm:gap-2">
               {/* Support Button */}
               <button
                 onClick={() => setIsDonateOpen(true)}
                 className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-slate-950 border border-amber-500/40 transition-all shadow-sm shrink-0 cursor-pointer active:scale-95 text-center"
-                title={lang === 'en' ? 'Support Project' : 'Поддержать проект'}
+                title={lang === 'en' ? 'Support Project' : lang === 'ua' ? 'Підтримати проект' : 'Поддержать проект'}
               >
                 <Coffee className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span className="font-bold">{lang === 'en' ? 'Support' : 'Поддержать'}</span>
+                <span className="font-bold">{lang === 'en' ? 'Support' : lang === 'ua' ? 'Підтримати' : 'Поддержать'}</span>
               </button>
 
-              {/* Language Switcher */}
-              <div className="flex items-center gap-0.5 bg-slate-900 border border-slate-800 p-0.5 sm:p-1 rounded-xl shadow-inner shrink-0">
-                <Globe className="w-3.5 h-3.5 text-amber-400 ml-1 mr-0.5 hidden sm:inline" />
-                <button
-                  onClick={() => setLang('ru')}
-                  className={`px-1.5 sm:px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all cursor-pointer ${
-                    lang === 'ru' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  RU
-                </button>
-                <button
-                  onClick={() => setLang('en')}
-                  className={`px-1.5 sm:px-2 py-1 rounded-lg text-xs font-bold font-mono transition-all cursor-pointer ${
-                    lang === 'en' ? 'bg-amber-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  ENG
-                </button>
-              </div>
+              {/* Language Switcher Button */}
+              <button
+                onClick={() => setIsLangModalOpen(true)}
+                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all cursor-pointer active:scale-95 shadow-sm shrink-0 flex items-center justify-center"
+                title={lang === 'en' ? 'Select Language' : lang === 'ua' ? 'Оберіть мову' : 'Выберите язык'}
+              >
+                <Globe className="w-4 h-4 text-amber-400" />
+              </button>
 
-              {/* Round Telegram Favicon Button */}
+              {/* Telegram Round Button */}
               <a
                 href="https://t.me/alexchai_dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#2AABEE] hover:bg-[#229ED9] hover:scale-105 text-white flex items-center justify-center shadow-md shadow-sky-500/25 transition-all shrink-0 active:scale-95 border border-sky-300/30 cursor-pointer"
-                title={lang === 'en' ? 'Contact Author (Telegram @alexchai_dev)' : 'Связь с автором (Telegram @alexchai_dev)'}
+                title="Telegram @alexchai_dev"
               >
-                <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white -translate-x-[0.5px] translate-y-[0.5px]" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .54-1.42.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.88 8.01-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.24 0 .38z"/>
-                </svg>
+                <Send className="w-4 h-4 text-white" />
               </a>
             </div>
           </div>
         </header>
 
         {/* HERO SECTION */}
-        <section className="max-w-7xl mx-auto px-4 pt-12 pb-8 text-center space-y-6">
+        <section className="max-w-7xl mx-auto px-4 pt-10 pb-8 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-semibold shadow-lg amber-glow">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>{t.heroBadge}</span>
           </div>
 
+          {/* H1 strictly matching TZ */}
           <h1 className="max-w-4xl mx-auto text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-slate-100 leading-[1.15]">
-            <span className="block mb-1">{t.heroTitlePart1.trim()}</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">
-              {t.heroTitlePart2.trim()}
-            </span>
+            <span className="block mb-1">{t.heroH1}</span>
           </h1>
 
+          {/* Subtitle strictly matching TZ */}
           <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-300 font-normal leading-relaxed">
-            {t.heroDesc}
+            {t.heroSub}
           </p>
+
+          {/* CTA Order MVP Button */}
+          <div className="pt-2">
+            <a
+              href="https://t.me/alexchai_dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.35)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <Send className="w-4.5 h-4.5 text-slate-950" />
+              <span>{t.ctaOrder}</span>
+            </a>
+          </div>
 
           {/* Privacy & Speed Pills */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-xs text-slate-300 font-mono">
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>100% Privacy Client-Side</span>
+              <span>100% Client-Side Privacy</span>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <Zap className="w-4 h-4 text-amber-400" />
-              <span>Zero Install • Browser Instant</span>
+              <span>24h MVP Delivery</span>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <Smartphone className="w-4 h-4 text-sky-400" />
-              <span>PWA Mobile Ready</span>
+              <span>PWA & Telegram Ready</span>
             </div>
           </div>
         </section>
 
         {/* CATEGORY FILTER TABS */}
-        <section className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-2 px-1 no-scrollbar">
+        <section className="max-w-7xl mx-auto px-4 py-3">
+          <div className="grid grid-cols-2 md:flex md:items-center md:justify-center gap-2 px-1">
             {Object.keys(t.categories).map((catKey) => {
               const isActive = activeTab === catKey;
               return (
                 <button
                   key={catKey}
                   onClick={() => setActiveTab(catKey)}
-                  className={`px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 whitespace-nowrap shrink-0 ${
+                  className={`px-3 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-center cursor-pointer flex items-center justify-center ${
                     isActive
                       ? 'bg-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/20 scale-[1.02]'
                       : 'bg-slate-900 text-slate-300 hover:text-slate-100 hover:bg-slate-850 border border-slate-800'
@@ -386,12 +577,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* APPLICATIONS CATALOG GRID */}
+        {/* CASE STUDIES GRID */}
         <section className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredApps.map((app) => {
               const Icon = app.icon;
-              const isLive = app.status === 'live';
 
               return (
                 <div
@@ -404,11 +594,7 @@ export default function App() {
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-300 shrink-0">
                         <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <span className={`text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-full border shrink-0 ${
-                        isLive 
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
-                          : 'bg-slate-800 text-slate-400 border-slate-700'
-                      }`}>
+                      <span className="text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shrink-0">
                         {app.statusText}
                       </span>
                     </div>
@@ -422,45 +608,55 @@ export default function App() {
                       </p>
                     </div>
 
-                    <p className="text-sm text-slate-300 leading-relaxed">
-                      {app.desc}
-                    </p>
-
-                    {/* Features list */}
+                    {/* Problem ➡️ Solution ➡️ Result Breakdown */}
                     <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                      <div className="p-2.5 rounded-xl bg-slate-950/70 border border-rose-500/20 space-y-0.5">
+                        <div className="text-[10px] font-black text-rose-400 uppercase tracking-wider flex items-center gap-1">
+                          <HelpCircle className="w-3 h-3" />
+                          <span>{t.labelProblem}</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">{app.problem}</p>
+                      </div>
+
+                      <div className="p-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/20 space-y-0.5">
+                        <div className="text-[10px] font-black text-cyan-400 uppercase tracking-wider flex items-center gap-1">
+                          <Lightbulb className="w-3 h-3" />
+                          <span>{t.labelSolution}</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">{app.solution}</p>
+                      </div>
+
+                      <div className="p-2.5 rounded-xl bg-slate-950/70 border border-emerald-500/20 space-y-0.5">
+                        <div className="text-[10px] font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                          <Trophy className="w-3 h-3" />
+                          <span>{t.labelResult}</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300 leading-snug">{app.result}</p>
+                      </div>
+                    </div>
+
+                    {/* Features checklist */}
+                    <div className="space-y-1.5 pt-2 border-t border-slate-800/80">
                       {app.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                          <span>{feat}</span>
+                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                          <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="pt-6 mt-6 border-t border-slate-800/80 space-y-2">
-                    {isLive && (
-                      <a
-                        href={app.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-extrabold py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] active:scale-95 text-sm uppercase tracking-wider"
-                      >
-                        <span>{t.launchApp}</span>
-                        <ExternalLink className="w-4.5 h-4.5" />
-                      </a>
-                    )}
-                    {!isLive && (
-                      <a
-                        href={lang === 'en' ? "https://t.me/jim_rohn_apps" : "https://t.me/jim_rohn_system"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-sky-300 font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all border border-slate-800 hover:border-sky-500/40 text-xs"
-                      >
-                        <Send className="w-4 h-4 text-sky-400" />
-                        <span>{t.stayTuned}</span>
-                      </a>
-                    )}
+                  {/* Action Button */}
+                  <div className="pt-6 mt-6 border-t border-slate-800/80">
+                    <a
+                      href={app.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-extrabold py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] active:scale-95 text-xs uppercase tracking-wider cursor-pointer"
+                    >
+                      <span>{t.launchApp}</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               );
@@ -468,12 +664,12 @@ export default function App() {
           </div>
         </section>
 
-        {/* ULTRA-LUXURY REDESIGNED DEVELOPER SECTION: About AlexChai */}
+        {/* DEVELOPER SECTION */}
         <section className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-slate-900/90 border border-slate-800/90 rounded-3xl p-8 md:p-12 shadow-2xl card-gradient relative overflow-hidden space-y-8">
             <div className="flex flex-col items-center text-center md:flex-row md:items-center md:text-left justify-between gap-6 pb-8 border-b border-slate-800/80">
               
-              {/* 3D Glowing Creator Emblem & Golden Typography Header */}
+              {/* Emblem & Typography */}
               <div className="flex flex-col items-center md:flex-row gap-4 md:gap-5">
                 <div className="relative group shrink-0">
                   <div className="absolute -inset-1 bg-gradient-to-tr from-amber-400 via-amber-200 to-amber-500 rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500"></div>
@@ -514,11 +710,11 @@ export default function App() {
                 className="px-6 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-sky-400 hover:from-sky-400 hover:to-sky-300 text-slate-950 font-extrabold text-sm flex items-center gap-2.5 shadow-xl transition-all active:scale-95 border border-sky-300/40 shrink-0"
               >
                 <Send className="w-4.5 h-4.5" />
-                <span>{lang === 'en' ? '💬 Contact Author & Feedback' : '💬 Связь с автором и отзывы'}</span>
+                <span>{lang === 'en' ? '💬 Contact Author & Feedback' : lang === 'ua' ? "💬 Зв'язок з автором та відгуки" : '💬 Связь с автором и отзывы'}</span>
               </a>
             </div>
 
-            {/* Author Bio Content */}
+            {/* Author Bio Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-300 leading-relaxed font-normal">
               <div className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800 space-y-2">
                 <div className="text-amber-400 font-bold font-mono text-xs uppercase tracking-wider">{t.card01Title}</div>
@@ -546,13 +742,63 @@ export default function App() {
           </div>
         </footer>
 
-        {/* Donate & Support Modal */}
+        {/* Support Modal */}
         {isDonateOpen && (
           <DonateModal
             isOpen={isDonateOpen}
             onClose={() => setIsDonateOpen(false)}
             lang={lang}
           />
+        )}
+
+        {/* LANGUAGE SELECTOR MODAL */}
+        {isLangModalOpen && (
+          <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+            <div className="bg-slate-900 border-2 border-amber-500/50 rounded-3xl p-5 max-w-xs w-full space-y-4 shadow-[0_0_60px_rgba(245,158,11,0.3)] relative">
+              <button
+                onClick={() => setIsLangModalOpen(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 font-bold text-sm cursor-pointer"
+              >
+                ✕
+              </button>
+
+              <div className="text-center">
+                <div className="w-11 h-11 rounded-2xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center mx-auto mb-2 text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+                  <Globe className="w-5.5 h-5.5" />
+                </div>
+                <h3 className="text-base font-serif font-bold text-slate-100">
+                  {lang === 'en' ? 'Select Language' : lang === 'ua' ? 'Оберіть мову' : 'Выберите язык'}
+                </h3>
+              </div>
+
+              <div className="space-y-2">
+                {[
+                  { code: 'ua', label: 'Українська', flag: '🇺🇦' },
+                  { code: 'en', label: 'English', flag: '🇺🇸' },
+                  { code: 'ru', label: 'Русский', flag: '🌐' },
+                ].map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => {
+                      setLang(l.code);
+                      setIsLangModalOpen(false);
+                    }}
+                    className={`w-full py-3 px-4 rounded-xl border font-bold text-xs flex items-center justify-between transition-all cursor-pointer ${
+                      lang === l.code
+                        ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-md'
+                        : 'bg-slate-950/70 border-slate-800 text-slate-300 hover:border-slate-700'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <span className="text-base">{l.flag}</span>
+                      <span>{l.label}</span>
+                    </span>
+                    {lang === l.code && <span className="text-amber-400 font-bold text-sm">✓</span>}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
 
         <Analytics />
