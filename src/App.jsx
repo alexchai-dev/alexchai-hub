@@ -137,27 +137,6 @@ export default function App() {
             '🖐️ Аудит оточення 5 пальців',
             '🏛️ Піраміда цілей з трансформацією особистості'
           ]
-        },
-        {
-          id: 'vix-signal-radar',
-          title: 'VIX Signal Radar & CheatSheet',
-          subtitle: 'Інтерактивний сигнальний термінал по индексу волатильності $VIX',
-          category: 'productivity',
-          statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
-          link: 'https://vix-signal-radar.vercel.app',
-          icon: Activity,
-          color: 'amber',
-          problem: 'Інвестори часто пропускают идэальные историчны зоны покупок акций під час ринковой паники та не фиксируют прибыль во время «перегріва» ринку.',
-          solution: 'Інтерактивний динамічний сигнальный терминал на основи шпаргалки инвестора по индексу VIX з автоматичнымы сигналами в Telegram Bot API, Email та Webhooks.',
-          result: 'Митттэве оповищення инвесторив про вихид VIX в Зону Покупок (>30) або Экстремального Страху (>45) з доказовою базой на всих кризисах 2002–2025 рр.',
-          features: [
-            '📊 Динамичный VIX Fear Gauge (5 зон волатильности)',
-            '🚨 Авто-сигналы в Telegram Bot API, Email & Webhooks',
-            '📈 Интерактивный Live-поток VIX с симуляцией',
-            '📜 Доказательная база по кризисам 2002–2025 гг.',
-            '🔊 Звуковые и браузерные Push-уведомления',
-            '📱 100% PWA & Мобильная адаптивность'
-          ]
         }
       ],
 
@@ -263,27 +242,6 @@ export default function App() {
             '🖐️ Аудит окружения 5 пальцев',
             '🏛️ Пирамида целей с трансформацией личности'
           ]
-        },
-        {
-          id: 'vix-signal-radar',
-          title: 'VIX Signal Radar & CheatSheet',
-          subtitle: 'Интерактивный сигнальный терминал по индексу волатильности $VIX',
-          category: 'productivity',
-          statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
-          link: 'https://vix-signal-radar.vercel.app',
-          icon: Activity,
-          color: 'amber',
-          problem: 'Инвесторы часто пропускают идеальные исторические зоны покупок акций во время рыночной паники и не фиксируют прибыль во время «перегрева» рынка.',
-          solution: 'Интерактивный динамический сигнальный терминал на основе шпаргалки инвестора по индексу VIX с автоматическими сигналами в Telegram Bot API, Email и Webhooks.',
-          result: 'Мгновенное оповещение инвесторов о выходе VIX в Зону Покупок (>30) или Экстремального Страха (>45) с доказательной базой на всех кризисах 2002–2025 гг.',
-          features: [
-            '📊 Динамический VIX Fear Gauge (5 зон волатильности)',
-            '🚨 Авто-сигналы в Telegram Bot API, Email & Webhooks',
-            '📈 Интерактивный Live-поток VIX с симуляцией',
-            '📜 Доказательная база по кризисам 2002–2025 гг.',
-            '🔊 Звуковые и браузерные Push-уведомления',
-            '📱 100% PWA & Мобильная адаптивность'
-          ]
         }
       ],
 
@@ -388,27 +346,6 @@ export default function App() {
             '⏱️ 24h Planner (Major/Minor Tasks)',
             '🖐️ 5 Finger Environment Audit',
             '🏛️ Goal Pyramid with Identity Shift'
-          ]
-        },
-        {
-          id: 'vix-signal-radar',
-          title: 'VIX Signal Radar & CheatSheet',
-          subtitle: 'Interactive Volatility Index ($VIX) Investor Signal Terminal',
-          category: 'productivity',
-          statusText: '🟢 PUBLISHED (LIVE)',
-          link: 'https://vix-signal-radar.vercel.app',
-          icon: Activity,
-          color: 'amber',
-          problem: 'Investors frequently miss prime historical stock buying opportunities during market panics and fail to reduce risk during extreme market complacency.',
-          solution: 'Interactive dynamic signal terminal based on Wall Street VIX Investor Cheat Sheet with automated Telegram Bot API, Email, and Webhook dispatching.',
-          result: 'Instant notification alerts when VIX breaches Buy Zone (>30) or Extreme Fear (>45) with historical proof across 2002–2025 financial crises.',
-          features: [
-            '📊 Dynamic VIX Fear Gauge (5 Volatility Zones)',
-            '🚨 Automated Signals via Telegram Bot API, Email & Webhooks',
-            '📈 Interactive Live VIX Stream with Simulation Slider',
-            '📜 Historical Proof & Financial Crisis Timeline (2002–2025)',
-            '🔊 Audio & Browser Push Notifications',
-            '📱 100% PWA & Mobile Adaptive Layout'
           ]
         }
       ],
