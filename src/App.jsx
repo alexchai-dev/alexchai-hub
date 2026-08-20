@@ -75,7 +75,7 @@ export default function App() {
         {
           id: 'neirostudio-ai',
           title: 'NeiroStudio AI 2.0',
-          subtitle: 'Мультимодальна 10-в-1 Екосистема ШІ-інструментів (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          subtitle: 'Мультимодальна 10-в-1 Екосистема ШІ-інструментів',
           category: 'ai',
           statusText: '🟢 ОПУБЛІКОВАНО (LIVE)',
           link: 'https://neirostudio-hub-v2.vercel.app',
@@ -83,7 +83,7 @@ export default function App() {
           color: 'amber',
           problem: 'Завищені ціни, повільні сервери та складний поріг входження для створення 3D YouTube-обкладинок, вірусних SMM-текстів та бізнес-ілюстрацій.',
           solution: 'Мультимодальний Telegram Mini App з 10 AI-інструментами (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
-          result: 'Подвійний 3D-двигун на базі надшвидкого Fal.ai FLUX Schnell ($0.003/ген, 1.2 сек) з вбудованою монетизацією Telegram Stars (⭐️) та HMAC-SHA256 анти-чит захистом.',
+          result: 'Подвійний 3D-двигун на базі надшвидкого Fal.ai FLUX Schnell та HMAC-SHA256 анти-чит захистом.',
           features: [
             '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Обкладинки + Векторний текст)',
@@ -91,7 +91,6 @@ export default function App() {
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
             '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
             '💼 Business Avatar 8K & Real Estate 3D Staging',
-            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
             '📦 Amazon KDP Sticker Generator & HD Proxy Download',
             '⭐️ Монетизація Telegram Stars (94% маржі)'
           ]
@@ -180,23 +179,22 @@ export default function App() {
         {
           id: 'neirostudio-ai',
           title: 'NeiroStudio AI 2.0',
-          subtitle: 'Мультимодальная 10-в-1 Экосистема ИИ-инструментов (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          subtitle: 'Мультимодальная 10-в-1 Экосистема ИИ-инструментов',
           category: 'ai',
           statusText: '🟢 ОПУБЛИКОВАНО (LIVE)',
           link: 'https://neirostudio-hub-v2.vercel.app',
           icon: Sparkles,
           color: 'amber',
           problem: 'Завышенные цены, медленные серверы и сложный порог входа для создания 3D YouTube-обложек, вирусных SMM-текстов и бизнес-иллюстраций.',
-          solution: 'Мультимодальный Telegram Mini App с 10 AI-инструментами (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
-          result: 'Двойной 3D-движок на базе сверхбыстрого Fal.ai FLUX Schnell ($0.003/ген, 1.2 сек) с встроенной монетизацией Telegram Stars (⭐️) и HMAC-SHA256 анти-чит защитой.',
+          solution: 'Мультимодальный Telegram Mini App с 10 AI-инструментами (YouTube 16:9 3D Studio, SMM Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
+          result: 'Двойной 3D-движок на базе сверхбыстрого Fal.ai FLUX Schnell и HMAC-SHA256 анти-чит защитой.',
           features: [
             '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Обложки + Векторный текст)',
-            '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA структура)',
+            '🤖 SMM Copywriter (AIDA структура)',
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
             '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
             '💼 Business Avatar 8K & Real Estate 3D Staging',
-            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
             '📦 Amazon KDP Sticker Generator & HD Proxy Download',
             '⭐️ Монетизация Telegram Stars (94% маржи)'
           ]
@@ -285,23 +283,22 @@ export default function App() {
         {
           id: 'neirostudio-ai',
           title: 'NeiroStudio AI 2.0',
-          subtitle: 'Multimodal 10-in-1 AI Tools Ecosystem (Dual 3D Engine + Fal.ai FLUX + NVIDIA Nemotron-70B)',
+          subtitle: 'Multimodal 10-in-1 AI Tools Ecosystem',
           category: 'ai',
           statusText: '🟢 PUBLISHED (LIVE)',
           link: 'https://neirostudio-hub-v2.vercel.app',
           icon: Sparkles,
           color: 'amber',
           problem: 'Overpriced subscriptions, slow generation servers, and high friction when creating 3D YouTube thumbnails and viral SMM content.',
-          solution: 'Multimodal Telegram Mini App with 10 production AI tools (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
-          result: 'Dual 3D Engine powered by high-speed Fal.ai FLUX Schnell ($0.003/gen, 1.2s response) with native Telegram Stars (⭐️) monetization and HMAC-SHA256 anti-cheat validation.',
+          solution: 'Multimodal Telegram Mini App with 10 production AI tools (YouTube 16:9 3D Studio, SMM Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
+          result: 'Dual 3D Engine powered by high-speed Fal.ai FLUX Schnell with HMAC-SHA256 anti-cheat validation.',
           features: [
             '🚀 Dual 3D AI Engine (1.2s Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Covers + Vector Text)',
-            '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA Structure)',
+            '🤖 SMM Copywriter (AIDA Structure)',
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
             '🛍️ E-Commerce 3D Studio & Michelin Food Styling',
             '💼 Business Avatar 8K & Real Estate 3D Staging',
-            '🎨 Web3 3D Mascot Studio & Stencil Tattoo Creator',
             '📦 Amazon KDP Sticker Generator & HD Proxy Download',
             '⭐️ Telegram Stars Monetization (94% Profit Margin)'
           ]
