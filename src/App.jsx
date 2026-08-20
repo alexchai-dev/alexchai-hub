@@ -85,7 +85,6 @@ export default function App() {
           solution: 'Мультимодальний Telegram Mini App з 10 AI-інструментами (YouTube 16:9 3D Studio, NVIDIA Nemotron Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
           result: 'Подвійний 3D-двигун на базі надшвидкого Fal.ai FLUX Schnell та HMAC-SHA256 анти-чит захистом.',
           features: [
-            '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Обкладинки + Векторний текст)',
             '🤖 NVIDIA Nemotron-70B SMM Copywriter (AIDA структура)',
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
@@ -189,7 +188,6 @@ export default function App() {
           solution: 'Мультимодальный Telegram Mini App с 10 AI-инструментами (YouTube 16:9 3D Studio, SMM Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
           result: 'Двойной 3D-движок на базе сверхбыстрого Fal.ai FLUX Schnell и HMAC-SHA256 анти-чит защитой.',
           features: [
-            '🚀 Dual 3D AI Engine (1.2 сек Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Обложки + Векторный текст)',
             '🤖 SMM Copywriter (AIDA структура)',
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
@@ -293,7 +291,6 @@ export default function App() {
           solution: 'Multimodal Telegram Mini App with 10 production AI tools (YouTube 16:9 3D Studio, SMM Copywriter, DeepSeek-R1 STEM Solver, E-Commerce Studio, Business Avatar 8K).',
           result: 'Dual 3D Engine powered by high-speed Fal.ai FLUX Schnell with HMAC-SHA256 anti-cheat validation.',
           features: [
-            '🚀 Dual 3D AI Engine (1.2s Fal.ai FLUX Schnell 8K)',
             '🎬 YouTube Studio (16:9 3D Covers + Vector Text)',
             '🤖 SMM Copywriter (AIDA Structure)',
             '📐 DeepSeek-R1 STEM Math & Physics Solver (NVIDIA H100 GPU)',
